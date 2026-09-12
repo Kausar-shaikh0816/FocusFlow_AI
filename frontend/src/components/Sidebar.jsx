@@ -53,9 +53,16 @@ function Sidebar() {
   📋 Kanban
 </Link>
 
-        <button className="nav-item">
-          🇯🇵 Japanese
-        </button>
+<Link
+  to="/japanese"
+  className={`nav-item ${
+    location.pathname === "/japanese"
+      ? "active"
+      : ""
+  }`}
+>
+  🇯🇵 Japanese
+</Link>
 
         <button className="nav-item">
           📊 Analytics

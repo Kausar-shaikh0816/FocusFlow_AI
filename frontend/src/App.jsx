@@ -1,5 +1,7 @@
 import "./App.css";
 import Kanban from "./pages/Kanban";
+import Japanese from "./pages/Japanese";
+import { JapaneseProvider } from "./context/JapaneseContext";
 
 import {
   BrowserRouter,
@@ -16,6 +18,7 @@ import Tasks from "./pages/Tasks";
 function App() {
   return (
     <TaskProvider>
+     <JapaneseProvider>
 
       <BrowserRouter>
 
@@ -36,10 +39,15 @@ function App() {
     path="/kanban"
     element={<Kanban />}
   />
+
+  <Route
+    path="/japanese"
+    element={<Japanese />}
+   />
 </Routes>
 
       </BrowserRouter>
-
+    </JapaneseProvider>
     </TaskProvider>
   );
 }
