@@ -25,15 +25,24 @@ function Sidebar() {
         <Link
           to="/schedule"
           className={`nav-item ${
-            location.pathname === "/schedule" ? "active" : ""
+            location.pathname === "/schedule"
+              ? "active"
+              : ""
           }`}
         >
           📅 Schedule
         </Link>
 
-        <button className="nav-item">
+        <Link
+          to="/tasks"
+          className={`nav-item ${
+            location.pathname === "/tasks"
+              ? "active"
+              : ""
+          }`}
+        >
           ✅ Tasks
-        </button>
+        </Link>
 
         <button className="nav-item">
           📋 Kanban
@@ -54,9 +63,11 @@ function Sidebar() {
       </nav>
 
       <div className="sidebar-bottom">
+
         <button className="nav-item">
           ⚙️ Settings
         </button>
+
       </div>
 
     </aside>

@@ -1,9 +1,9 @@
-
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
+import { useTasks } from "../context/TaskContext";
 
 function Schedule() {
-  const [tasks, setTasks] = useState([]);
+  const { tasks, addTask } = useTasks();
 
   const [form, setForm] = useState({
     title: "",
@@ -23,18 +23,16 @@ function Schedule() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Check required fields
     if (!form.title || !form.date || !form.time) {
       alert("Please fill Title, Date and Time");
       return;
     }
 
-    const newTask = {
-      id: Date.now(),
-      ...form,
-    };
+    // Add task through TaskContext
+    addTask(form);
 
-    setTasks([...tasks, newTask]);
-
+    // Clear form after adding
     setForm({
       title: "",
       date: "",
@@ -55,9 +53,12 @@ function Schedule() {
 
         <div className="schedule-page">
 
+          {/* Page Header */}
           <div className="page-header">
             <div>
-              <p className="section-label">PLAN YOUR DAY</p>
+              <p className="section-label">
+                PLAN YOUR DAY
+              </p>
 
               <h2>Schedule</h2>
 
@@ -67,15 +68,20 @@ function Schedule() {
             </div>
           </div>
 
+
           <div className="schedule-container">
 
-            {/* Add Task Form */}
+            {/* =========================
+                ADD TASK FORM
+            ========================= */}
+
             <div className="schedule-form-card">
 
               <h3>➕ Add New Task</h3>
 
               <form onSubmit={handleSubmit}>
 
+                {/* Task Title */}
                 <div className="form-group">
 
                   <label>Task Title</label>
@@ -90,6 +96,8 @@ function Schedule() {
 
                 </div>
 
+
+                {/* Date + Time */}
                 <div className="form-row">
 
                   <div className="form-group">
@@ -104,6 +112,7 @@ function Schedule() {
                     />
 
                   </div>
+
 
                   <div className="form-group">
 
@@ -120,6 +129,8 @@ function Schedule() {
 
                 </div>
 
+
+                {/* Category + Priority */}
                 <div className="form-row">
 
                   <div className="form-group">
@@ -132,16 +143,34 @@ function Schedule() {
                       onChange={handleChange}
                     >
 
-                      <option>Study</option>
-                      <option>AWS</option>
-                      <option>Data Engineering</option>
-                      <option>Japanese</option>
-                      <option>Project</option>
-                      <option>Personal</option>
+                      <option value="Study">
+                        Study
+                      </option>
+
+                      <option value="AWS">
+                        AWS
+                      </option>
+
+                      <option value="Data Engineering">
+                        Data Engineering
+                      </option>
+
+                      <option value="Japanese">
+                        Japanese
+                      </option>
+
+                      <option value="Project">
+                        Project
+                      </option>
+
+                      <option value="Personal">
+                        Personal
+                      </option>
 
                     </select>
 
                   </div>
+
 
                   <div className="form-group">
 
@@ -153,9 +182,17 @@ function Schedule() {
                       onChange={handleChange}
                     >
 
-                      <option>Low</option>
-                      <option>Medium</option>
-                      <option>High</option>
+                      <option value="Low">
+                        Low
+                      </option>
+
+                      <option value="Medium">
+                        Medium
+                      </option>
+
+                      <option value="High">
+                        High
+                      </option>
 
                     </select>
 
@@ -163,6 +200,8 @@ function Schedule() {
 
                 </div>
 
+
+                {/* Add Task Button */}
                 <button
                   type="submit"
                   className="save-task-btn"
@@ -174,9 +213,14 @@ function Schedule() {
 
             </div>
 
-            {/* Task List */}
+
+            {/* =========================
+                SCHEDULED TASKS
+            ========================= */}
+
             <div className="scheduled-tasks-card">
 
+              {/* Header */}
               <div className="section-header">
 
                 <div>
@@ -191,12 +235,16 @@ function Schedule() {
 
                 </div>
 
+
                 <span className="task-count">
-                  {tasks.length} Tasks
+                  {tasks.length}{" "}
+                  {tasks.length === 1 ? "Task" : "Tasks"}
                 </span>
 
               </div>
 
+
+              {/* Empty State */}
               {tasks.length === 0 ? (
 
                 <div className="empty-state">
@@ -215,6 +263,7 @@ function Schedule() {
 
               ) : (
 
+                /* Task List */
                 <div className="scheduled-task-list">
 
                   {tasks.map((task) => (
@@ -224,6 +273,7 @@ function Schedule() {
                       key={task.id}
                     >
 
+                      {/* Date and Time */}
                       <div className="task-date">
 
                         <strong>
@@ -236,6 +286,8 @@ function Schedule() {
 
                       </div>
 
+
+                      {/* Task Information */}
                       <div className="scheduled-task-info">
 
                         <h3>
@@ -248,6 +300,8 @@ function Schedule() {
 
                       </div>
 
+
+                      {/* Priority */}
                       <span
                         className={`priority ${task.priority.toLowerCase()}`}
                       >
