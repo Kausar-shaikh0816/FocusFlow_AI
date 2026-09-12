@@ -32,6 +32,19 @@ export function TaskProvider({ children }) {
       priority: task.priority,
       completed: false,
     };
+    const updateTaskStatus = (id, status) => {
+  setTasks((currentTasks) =>
+    currentTasks.map((task) =>
+      task.id === id
+        ? {
+            ...task,
+            status: status,
+            completed: status === "COMPLETED",
+          }
+        : task
+    )
+  );
+};
 
     setTasks((currentTasks) => {
       return [...currentTasks, newTask];
@@ -50,6 +63,19 @@ export function TaskProvider({ children }) {
       )
     );
   };
+  const updateTaskStatus = (id, status) => {
+  setTasks((currentTasks) =>
+    currentTasks.map((task) =>
+      task.id === id
+        ? {
+            ...task,
+            status: status,
+            completed: status === "COMPLETED",
+          }
+        : task
+    )
+  );
+};
 
   const deleteTask = (id) => {
     setTasks((currentTasks) =>
@@ -60,10 +86,11 @@ export function TaskProvider({ children }) {
   return (
     <TaskContext.Provider
       value={{
-        tasks,
-        addTask,
-        toggleTask,
-        deleteTask,
+    tasks,
+    addTask,
+    toggleTask,
+    deleteTask,
+    updateTaskStatus,
       }}
     >
       {children}

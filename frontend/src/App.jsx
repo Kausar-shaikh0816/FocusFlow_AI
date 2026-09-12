@@ -1,4 +1,5 @@
 import "./App.css";
+import Kanban from "./pages/Kanban";
 
 import {
   BrowserRouter,
@@ -19,23 +20,23 @@ function App() {
       <BrowserRouter>
 
         <Routes>
+  <Route path="/" element={<Dashboard />} />
 
-          <Route
-            path="/"
-            element={<Dashboard />}
-          />
+  <Route
+    path="/schedule"
+    element={<Schedule />}
+  />
 
-          <Route
-            path="/schedule"
-            element={<Schedule />}
-          />
+  <Route
+    path="/tasks"
+    element={<Tasks />}
+  />
 
-          <Route
-            path="/tasks"
-            element={<Tasks />}
-          />
-
-        </Routes>
+  <Route
+    path="/kanban"
+    element={<Kanban />}
+  />
+</Routes>
 
       </BrowserRouter>
 

@@ -44,9 +44,14 @@ function Sidebar() {
           ✅ Tasks
         </Link>
 
-        <button className="nav-item">
-          📋 Kanban
-        </button>
+        <Link
+             to="/kanban"
+             className={`nav-item ${
+                    location.pathname === "/kanban"? "active": ""
+  }`}
+>
+  📋 Kanban
+</Link>
 
         <button className="nav-item">
           🇯🇵 Japanese
