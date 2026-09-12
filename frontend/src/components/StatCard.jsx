@@ -1,4 +1,4 @@
-function StatCard({ title, value, subtitle, icon }) {
+function StatCard({ title, value, icon }) {
   return (
     <div className="stat-card">
 
@@ -7,9 +7,8 @@ function StatCard({ title, value, subtitle, icon }) {
       </div>
 
       <div>
-        <p className="stat-title">{title}</p>
-        <h2>{value}</h2>
-        <p className="stat-subtitle">{subtitle}</p>
+        <p>{title}</p>
+        <h3>{value}</h3>
       </div>
 
     </div>
