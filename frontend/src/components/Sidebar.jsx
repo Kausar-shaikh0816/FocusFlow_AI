@@ -64,9 +64,16 @@ function Sidebar() {
   🇯🇵 Japanese
 </Link>
 
-        <button className="nav-item">
-          📊 Analytics
-        </button>
+<Link
+  to="/analytics"
+  className={`nav-item ${
+    location.pathname === "/analytics"
+      ? "active"
+      : ""
+  }`}
+>
+  📊 Analytics
+</Link>        
 
         <button className="nav-item">
           🤖 AI Agent

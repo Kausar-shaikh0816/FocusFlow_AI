@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 import { TaskProvider } from "./context/TaskContext";
-
+import Analytics from "./pages/Analytics";
 import Dashboard from "./pages/Dashboard";
 import Schedule from "./pages/Schedule";
 import Tasks from "./pages/Tasks";
@@ -44,6 +44,10 @@ function App() {
     path="/japanese"
     element={<Japanese />}
    />
+   <Route
+  path="/analytics"
+  element={<Analytics />}
+/>
 </Routes>
 
       </BrowserRouter>
